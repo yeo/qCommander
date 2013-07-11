@@ -7,7 +7,9 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , https = require('https')
+  , fs = require('fs');
 
 //var app = express();
 app = express(); //monkey code for now ;). it;s bad I know
@@ -38,3 +40,14 @@ app.get('/users', user.list);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+//https
+//should comment out when running on heroku.
+//Need to implement ssl on nginx level and use it as a reverse cache proxy.
+// var options = {
+//   key: fs.readFileSync('/etc/nginx/ssl/server.key'),
+//   cert: fs.readFileSync('/etc/nginx/ssl/server.crt')
+// };
+// http.createServer(options, app).listen(443, function(){
+//   console.log('Express server listening on port 443');
+// });
