@@ -9,12 +9,14 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
-var app = express();
+//var app = express();
+app = express(); //monkey code for now ;). it;s bad I know
 
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+app.set('root_url', 'http://127.0.0.1:3000');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
