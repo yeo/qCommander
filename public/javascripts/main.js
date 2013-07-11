@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: "./scripts-v0.1"
+    baseUrl: "./javascripts"
     
     // Libraries
     ,paths: {
@@ -7,20 +7,17 @@ require.config({
         bootstrap: 'bootstrap.min',
         'underscore': 'underscore-min',
         'backbone': 'backbone-min',
-        text: 'text',
-        i18n: 'i18n',
-        transform: 'jquery.transform',
         buzz: 'buzz',
         parse: 'parse-1.2.0.min',
         'localStorage': 'backbone.localStorage-min',
-        easing: 'jquery.easing.1.3'
+        firebase: 'http://cdn.firebase.com/v0/firebase'
     }
 
     ,shim: {
         "underscore": {
             "exports": "_"
         },
-        
+
         "easing" : {
             "deps": ["jquery"],
         },
@@ -35,6 +32,10 @@ require.config({
 
             // Exports the global window.Backbone object
             "exports": "Backbone"
+        },
+
+        "firebase": {
+          "exports": "Firebase"  
         },
 
         "localStorage" : {
@@ -61,8 +62,9 @@ require.config({
             exports: 'Parse'
         }
     }
-
 })
+
 require(['app'], function (app) {
+    console.log('sasa');
     app.init();
 })
