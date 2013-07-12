@@ -15,7 +15,7 @@ var express = require('express')
 app = express(); //monkey code for now ;). it;s bad I know
 
 // all environments
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 80);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.set('root_url', '//127.0.0.1');
