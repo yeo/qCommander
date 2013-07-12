@@ -10,12 +10,20 @@ define(['jquery', 'underscore', 'backbone',  'firebase', 'buzz', 'localStorage',
       tagName: 'div',
       className: 'qcommander',
       id: '#qcommander',
-      template: _.template('<div style=""><%= token%></div>'),
+      template: _.template('<div style="text-align: center"><img src="https://chart.googleapis.com/chart?cht=qr&chs=500x500&chl=<%= token%>" alt="Waiting for token" /></div>'),
 
+      uuid: function guidGenerator() {
+          var S4 = function() {
+             return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+          };
+          return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+      },
 
       initialize: function(){ 
-        remoteQueu = new Firebase('https://qcommander.firebaseio-demo.com/');
+        remoteQueu = new Firebase('https://qcommander.firebaseio-demo.com/command_queues');
         remoteQueu.limit(200).on('child_added', function (snapshot) {
+          
+          console.log(snapshot)
           var message = snapshot.val();
           console.log(message)
           switch (message.cmd) {
@@ -29,7 +37,9 @@ define(['jquery', 'underscore', 'backbone',  'firebase', 'buzz', 'localStorage',
               $('.controls > a.prev').click()
               break;
           }
-
+          //Okay, remove that command
+          var r = new Firebase("https://qcommander.firebaseio-demo.com/command_queues/".concat(snapshot.name()))
+          r.remove()
           
         })
         this.render(); 
