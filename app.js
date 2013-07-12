@@ -15,10 +15,10 @@ var express = require('express')
 app = express(); //monkey code for now ;). it;s bad I know
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 80);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.set('root_url', 'http://127.0.0.1:3000');
+app.set('root_url', '//127.0.0.1');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
@@ -44,10 +44,10 @@ http.createServer(app).listen(app.get('port'), function(){
 //https
 //should comment out when running on heroku.
 //Need to implement ssl on nginx level and use it as a reverse cache proxy.
-// var options = {
-//   key: fs.readFileSync('/etc/nginx/ssl/server.key'),
-//   cert: fs.readFileSync('/etc/nginx/ssl/server.crt')
-// };
-// http.createServer(options, app).listen(443, function(){
-//   console.log('Express server listening on port 443');
-// });
+var options = {
+  key: fs.readFileSync('/etc/nginx/ssl/server.key'),
+  cert: fs.readFileSync('/etc/nginx/ssl/server.crt')
+};
+https.createServer(options, app).listen(443, function(){
+  console.log('Express server listening on port 443');
+});
