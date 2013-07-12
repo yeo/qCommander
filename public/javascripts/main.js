@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: "./javascripts"
+    baseUrl: "//127.0.0.1/javascripts"
     
     // Libraries
     ,paths: {
@@ -10,25 +10,33 @@ require.config({
         buzz: 'buzz',
         parse: 'parse-1.2.0.min',
         'localStorage': 'backbone.localStorage-min',
-        firebase: 'http://cdn.firebase.com/v0/firebase'
+        firebase: '//cdn.firebase.com/v0/firebase'
     }
 
     ,shim: {
+        '*': { 'jquery': 'jquery-private' },
+        'jquery-private': { 'jquery': 'jquery' },
+
+        "jquery": {
+            "exports": "$j"
+        },
+
         "underscore": {
             "exports": "_"
         },
 
         "easing" : {
-            "deps": ["jquery"],
+            // "deps": ["jquery"],
         },
 
         "bootstrap" : {
-            "deps": ["jquery"],
+            // "deps": ["jquery"],
         },
 
         "backbone": {
             // Depends on underscore/lodash and jQuery
-            "deps": ["underscore", "jquery"],
+            "deps": ["underscore"], //, "jquery"],
+            // "deps": ["underscore", "jquery"],
 
             // Exports the global window.Backbone object
             "exports": "Backbone"
@@ -45,7 +53,7 @@ require.config({
 
         'transform': {
             deps: [
-                'jquery'
+                // 'jquery'
             ]
              //,"exports": "transform"
         },

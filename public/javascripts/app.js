@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone',  'firebase', 'buzz', 'localStorage', 'bootstrap'], function ($, _, Backbone, buzz, __Firebase__) {
+define(['jquery-private', 'underscore', 'backbone',  'firebase', 'buzz', 'localStorage', 'bootstrap'], function ($_, _, Backbone, buzz, __Firebase__) {
   "use strict";
   var VERSION_LEVEL = "0.1.0.9" //major.minor.patch.update_cache_clean_number
   var remoteQueu
@@ -30,11 +30,16 @@ define(['jquery', 'underscore', 'backbone',  'firebase', 'buzz', 'localStorage',
             case 'next':
               var f = $('.speakerdeck-iframe');
               // $('.controls > a.next', f.contents()).click()
-              $('.controls > a.next').click()
+              console.log($('.controls > a.next'))
+              $('.controls > a.next').click();
+
+              $('.nav .btnNext').length && $('.nav .btnNext').click()
               break;
             case 'prev':
               var f = $('.speakerdeck-iframe');
-              $('.controls > a.prev').click()
+              $('.controls > a.prev').click();
+
+              $('.nav .btnPrev').length && $('.nav .btnNext').click()
               break;
           }
           //Okay, remove that command
