@@ -39,7 +39,7 @@ define(['jquery-private', 'underscore', 'backbone',  'firebase', 'buzz', 'localS
               var f = $('.speakerdeck-iframe');
               $('.controls > a.prev').click();
 
-              $('.nav .btnPrev').length && $('.nav .btnNext').click()
+              $('.nav .btnPrevious').length && $('.nav .btnNext').click()
               break;
           }
           //Okay, remove that command
